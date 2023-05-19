@@ -84,11 +84,16 @@ public class Principal {
 			System.out.println("Informe o valor a ser sacado");
 			System.out.print("R$ ");
 			saque = sc.nextInt();
-			caixa.setSaque(saque);
+
+			if (saque == 0) {
+				break;
+			}
+			
 			if (saque > caixa.getDeposito()) {
 				System.out.println("Valor indisponível");
 				System.out.println();
 			} else {
+				caixa.setSaque(saque);
 				int[] notas = { 100, 50, 20, 10, 5, 2 };
 				int[] qtdNotas = new int[notas.length];
 
@@ -96,7 +101,7 @@ public class Principal {
 					qtdNotas[i] = saque / notas[i];
 					saque %= notas[i];
 				}
-
+				System.out.println();
 				System.out.println("---- NOTAS ----");
 				System.out.println();
 				for (int i = 0; i < notas.length; i++) {
@@ -108,7 +113,6 @@ public class Principal {
 		System.out.println();
 		System.out.println("--------------");
 		System.out.println();
-
 	}
 
 	private static void showEstatisticas(Caixa caixa) {

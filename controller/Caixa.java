@@ -13,7 +13,6 @@ public class Caixa {
 
 	public void setDeposito(int deposito) {
 		this.deposito += deposito;
-		this.deposito -= saque;
 		movimentacao.add(deposito);
 	}
 
