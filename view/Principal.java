@@ -19,25 +19,25 @@ public class Principal {
 			opcao = showMenu(sc);
 
 			switch (opcao) {
-			case 1:
-				showCarregaNotas(sc, caixa);
-				break;
+				case 1:
+					showCarregaNotas(sc, caixa);
+					break;
 
-			case 2:
-				showRetirarNotas(sc, caixa);
-				break;
+				case 2:
+					showRetirarNotas(sc, caixa);
+					break;
 
-			case 3:
-				showEstatisticas(caixa);
-				break;
+				case 3:
+					showEstatisticas(caixa);
+					break;
 
-			case 4:
-				salvarDadosEmArquivo(sc, caixa);
-				break;
+				case 4:
+					salvarDadosEmArquivo(sc, caixa);
+					break;
 
-			default:
-				System.out.println("Opção inválida!");
-				break;
+				default:
+					System.out.println("Opção inválida!");
+					break;
 			}
 
 		} while (opcao != 9);
@@ -88,7 +88,7 @@ public class Principal {
 			if (saque == 0) {
 				break;
 			}
-			
+
 			if (saque > caixa.getDeposito()) {
 				System.out.println("Valor indisponível");
 				System.out.println();
@@ -97,9 +97,15 @@ public class Principal {
 				int[] notas = { 100, 50, 20, 10, 5, 2 };
 				int[] qtdNotas = new int[notas.length];
 
-				for (int i = 0; i < notas.length; i++) {
-					qtdNotas[i] = saque / notas[i];
-					saque %= notas[i];
+				for (int i = 0; saque > 0; i++) {
+					if (saque % 5 != 0) {
+						while (saque % 5 != 0) {
+							saque -= notas[5];
+							qtdNotas[5]++;
+						}
+					}
+						qtdNotas[i] = saque / notas[i];
+						saque %= notas[i];
 				}
 				System.out.println();
 				System.out.println("---- NOTAS ----");
